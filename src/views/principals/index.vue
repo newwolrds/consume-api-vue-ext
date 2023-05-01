@@ -1,6 +1,7 @@
 <script setup>
 
     //import ref and onMounted
+    import axios from 'axios';
     import { ref, onMounted } from 'vue';
 
     //import api
@@ -11,10 +12,16 @@
 
     //method fetchDataPosts
     const fetchDataPosts = async () => {
+        
+        const response = await axios.get('https://api.ipify.org?format=json')
+        // extract IP address from response data
+        const ipAddress = response.data.ip
         const options = {
             headers: {
-                'Authorization': 'eyJpdiI6Ikc0RHdiOUF0TU9IQWpoVVR3SVFNU0E9PSIsInZhbHVlIjoiN2pEd3ZObmZTYStYdVhzL1NFUGlldz09IiwibWFjIjoiMTVkMGQyYTQxYWRmM2IzZWY4OWVmZTUyOGUwNGFmY2E1MzAwZTBlYTIwNjI5ODRkODVhYTQyZjIyYTgwMWJkZSIsInRhZyI6IiJ9YspAJbi4jljFFRy'
-            }
+                'Authorization': 'eyJpdiI6Ikc0RHdiOUF0TU9IQWpoVVR3SVFNU0E9PSIsInZhbHVlIjoiN2pEd3ZObmZTYStYdVhzL1NFUGlldz09IiwibWFjIjoiMTVkMGQyYTQxYWRmM2IzZWY4OWVmZTUyOGUwNGFmY2E1MzAwZTBlYTIwNjI5ODRkODVhYTQyZjIyYTgwMWJkZSIsInRhZyI6IiJ9YspAJbi4jljFFRy',
+                'X-Forwarded-For': await ipAddress
+
+            },
         }
         //fetch data 
         await api.get('/api/v1/principals', options)

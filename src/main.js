@@ -1,16 +1,13 @@
-//import createApp from Vue
-import { createApp } from 'vue';
+import { createApp } from 'vue'
+import App from './App.vue'
 
-//import component App
-import App from './App.vue';
-
-//import config router
+//import router
 import router from './router'
 
-//create App Vue
-const app = createApp(App);
+const app = createApp(App)
 
-//gunakan "router" di Vue dengan plugin "use"
-app.use(router);
+//gunakan router di vue js dengan plugin "use"
+app.use(router)
 
-app.mount('#app');
+//mount
+app.mount('#app')
